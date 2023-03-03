@@ -12,5 +12,24 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Do Checks
-        run: echo 'Linting, formatting, etc...'
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.17.0'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+  publish:
+    if: github.event_name == 'push'
+    needs: pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check node_modules
+        run: ls node_modules
+
+      - name: Do Release
+        run: ls node_modules'
