@@ -1,0 +1,16 @@
+name: Pr
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do Checks
+        run: echo 'Linting, formatting, etc...'
